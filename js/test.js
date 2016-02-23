@@ -5,10 +5,8 @@ window.onload = function(){
   var btn = document.getElementById("my-button");
   btn.onclick = function(){
     var inputArray = new Array(parseInt($("#input1").val()),parseInt($("#input2").val()),parseInt($("#input3").val()));
-    if (isNumber(inputArray[0]) && isNumber(inputArray[1]) && isNumber(inputArray[2])) {
+    if (checkInput(inputArray)) {
       playGame(inputArray);
-    }else {
-      alert("输入数字错误！");
     }
   }
 }
@@ -67,4 +65,26 @@ function isRoleFive(number,input1){
   }else {
     return false;
   }
+}
+
+function checkInput(inputArray) {
+  if(!checkSameNumber(inputArray)) {
+    alert("输入数字重复！");
+    return false;
+  }
+  if (!(isNumber(inputArray[0]) && isNumber(inputArray[1]) && isNumber(inputArray[2]))){
+    alert("输入数字错误！");
+    return false;
+  }
+  return true;
+}
+
+function checkSameNumber(inputArray) {
+  var nary=inputArray.sort();
+  for(var i=0;i<nary.length;i++){
+    if (nary[i]==nary[i+1]){
+      return false;
+    }
+  }
+  return true;
 }
