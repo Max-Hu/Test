@@ -12,19 +12,23 @@ function playGame(inputArray) {
     if(isRoleFive(i,inputArray[0])){
       continue;
     }else {
-      var result = "";
-      for (var j = 0; j < inputArray.length; j++) {
-        if (isDivisible(inputArray[j],i)) {
-          result += outputArray[j];
-        }
-      }
-      if (result == "") {
+      var result = restRole(i,inputArray);
+      if (_.isUndefined(result)) {
         result = i;
       }
       createHtml(i + "==>" + result);
     }
   }
   output();
+}
+
+function restRole(number,inputArray) {
+  var result = "";
+  for (var j = 0; j < inputArray.length; j++) {
+    if (isDivisible(inputArray[j],number)) {
+      result += outputArray[j];
+    }
+  }
 }
 
 function output() {
@@ -46,7 +50,7 @@ function createHtml(output) {
 }
 
 function isDivisible(divisor,dividend) {
-  if (dividend%divisor == 0) {
+  if (dividend%divisor === 0) {
     return true;
   }else {
     return false;
