@@ -12,7 +12,7 @@ describe('check Input', function() {
 
   it('检测出重复元素', function() {
     var result = checkSameNumber(collection_b);
-    expect(result).toEqual(false);
+    expect(result).toEqual(true);
   });
   it('检测出非个位数元素', function() {
     var result = checkIllegalNumber(collection_c);
@@ -45,12 +45,12 @@ describe('check is divisible', function() {
   var dividend_a = 35;
   var dividend_b = 10;
   it('检测是否可以整除', function() {
-    var result = isDivisible(dividend_a,divisor)
+    var result = isDivisible(divisor,dividend_a)
     expect(result).toEqual(true);
   });
 
   it('检测是否可以整除', function() {
-    var result = isDivisible(dividend_b,divisor)
+    var result = isDivisible(divisor,dividend_b)
     expect(result).toEqual(false);
   });
 });

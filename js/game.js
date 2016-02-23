@@ -2,6 +2,11 @@
 var outputArray = new Array("Fizz","Buzz","Whizz");
 var outputHtml = "";
 
+function clean() {
+  outputHtml = "";
+  $("#output").empty();
+}
+
 function playGame(inputArray) {
   for (var i = 1; i < 101; i++) {
     if(isRoleFive(i,inputArray[0])){
@@ -59,7 +64,7 @@ function isRoleFive(number,input1){
 }
 
 function checkInput(inputArray) {
-  if(!checkSameNumber(inputArray)) {
+  if(checkSameNumber(inputArray)) {
     alert("输入数字重复！");
     return false;
   }
@@ -78,11 +83,11 @@ function checkIllegalNumber(inputArray) {
 }
 
 function checkSameNumber(inputArray) {
-  var nary=inputArray.sort();
-  for(var i=0;i<nary.length;i++){
-    if (nary[i]==nary[i+1]){
-      return false;
-    }
+  var hash = {};
+  for(var i in inputArray) {
+    if(hash[inputArray[i]])
+      return true;
+      hash[inputArray[i]] = true;
   }
-  return true;
+  return false;
 }
